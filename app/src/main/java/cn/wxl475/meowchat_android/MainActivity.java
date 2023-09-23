@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
         //发布按钮跳转
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) View nav_release = findViewById(R.id.navigation_release);
         nav_release.setOnClickListener(v->{
-            Intent intent=new Intent(MainActivity.this, test.class);
-            startActivity(intent);
+            releaseOnClick();
         });
 
         // 获取页面上的底部导航栏控件
@@ -42,5 +41,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+    }
+
+    public void releaseOnClick(){
+        startActivity(new Intent(MainActivity.this, ReleaseActivity.class));
     }
 }
