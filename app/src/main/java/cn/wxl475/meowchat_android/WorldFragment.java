@@ -9,10 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class CommunityFragment extends Fragment {
+public class WorldFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
-        View root=inflater.inflate(R.layout.fragment_community,container,false);
+        View root=inflater.inflate(R.layout.fragment_world,container,false);
         return root;
     }
 }

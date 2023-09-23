@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_community"
+        android:icon="@drawable/community_grey"
+        android:title="社区" />
+
+    <item
+        android:id="@+id/navigation_collection"
+        android:icon="@drawable/collection_grey"
+        android:title="图鉴" />
+
+    <item
+        android:id="@+id/navigation_release"
+        android:icon="@drawable/add"
+        android:title="发布" />
+    <item
+        android:id="@+id/navigation_world"
+        android:icon="@drawable/world_grey"
+        android:title="世界" />
+
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/mine_grey"
+        android:title="我的" />
+</menu>
+
