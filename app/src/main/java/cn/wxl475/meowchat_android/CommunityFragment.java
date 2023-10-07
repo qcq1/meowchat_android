@@ -19,7 +19,9 @@ public class CommunityFragment extends Fragment {
         View root=inflater.inflate(R.layout.fragment_community,container,false);
         //轮播图,启动！
         ViewFlipper flipper = root.findViewById(R.id.flipper);
+        flipper.setFlipInterval(6500);
         flipper.startFlipping();
+
         return root;
     }
 }
