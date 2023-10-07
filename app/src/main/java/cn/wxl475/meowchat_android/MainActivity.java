@@ -38,10 +38,6 @@ public class MainActivity extends AppCompatActivity {
         // 启动
       //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);//因为取消了app上方的标题栏，所以弃用此行代码，否则无法进入app
         NavigationUI.setupWithNavController(navView, navController);
-
-        //轮播图,启动！
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ViewFlipper flipper = findViewById(R.id.flipper);
-        flipper.startFlipping();
     }
 
     public void releaseOnClick() {
