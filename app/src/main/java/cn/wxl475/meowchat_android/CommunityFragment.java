@@ -2,12 +2,19 @@ package cn.wxl475.meowchat_android;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.NonNull;
@@ -19,6 +26,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import cn.wxl475.meowchat_android.myClass.my_imageView;
@@ -36,6 +44,29 @@ public class CommunityFragment extends Fragment {
     ViewFlipper flipper;
     private SharedPreferences.Editor editor_CommunityFragment;
     private SharedPreferences getter_CommunityFragment;
+    @SuppressLint("HandlerLeak")
+    private Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            news_result newsResult = (news_result) msg.obj;
+            List<News> news = newsResult.getNews();
+            for(int i=0;i<news.size();i++){
+                my_imageView myImageView = new my_imageView(requireContext());
+                myImageView.setImageURL(news.get(i).getImageUrl());
+                int finalI = i;
+                myImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(),WebActivity.class);
+                        intent.putExtra("LinkUrl",news.get(finalI).getLinkUrl());
+                        startActivity(intent);
+                    }
+                });
+                flipper.addView(myImageView);
+            }
+        }
+
+    };
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_community, container, false);
@@ -101,12 +132,9 @@ public class CommunityFragment extends Fragment {
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 assert response.body() != null;
                 news_result newsResult = new Gson().fromJson(response.body().string(), news_result.class);
-                List<News> news = newsResult.getNews();
-                ViewFlipper flipper = root.findViewById(R.id.flipper);
-                for(int i=0;i<3;i++){
-                    my_imageView child = (my_imageView) flipper.getChildAt(i);
-                    child.setImageURL(news.get(i).getImageUrl());
-                }
+                Message msg=new Message();
+                msg.obj=newsResult;
+                handler.sendMessage(msg);
             }
         });
     }
