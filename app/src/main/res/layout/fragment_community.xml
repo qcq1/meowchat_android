@@ -48,17 +48,17 @@
             android:inAnimation="@anim/right_in"
             android:outAnimation="@anim/left_out">
 
-            <ImageView
+            <cn.wxl475.meowchat_android.myClass.my_imageView
                 android:id="@+id/flipper_imageView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-            <ImageView
+            <cn.wxl475.meowchat_android.myClass.my_imageView
                 android:id="@+id/flipper_imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-            <ImageView
+            <cn.wxl475.meowchat_android.myClass.my_imageView
                 android:id="@+id/flipper_imageView3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
