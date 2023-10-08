@@ -1,19 +1,21 @@
 package cn.wxl475.meowchat_android;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ViewFlipper;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         // 启动
-      //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);//因为取消了app上方的标题栏，所以弃用此行代码，否则无法进入app
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);//因为取消了app上方的标题栏，所以弃用此行代码，否则无法进入app
         NavigationUI.setupWithNavController(navView, navController);
+
+        editor =getBaseContext().getSharedPreferences("public",MODE_PRIVATE).edit();
+        editor.putString("获取轮播图", "https://meowchat.xhpolaris.com/notice/get_news");
     }
 
     public void releaseOnClick() {
