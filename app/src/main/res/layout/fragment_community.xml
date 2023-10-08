@@ -49,22 +49,19 @@
             android:outAnimation="@anim/left_out">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/flipper_imageView1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/admin_check" />
+                android:layout_height="match_parent"/>
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/flipper_imageView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/add" />
+                android:layout_height="match_parent"/>
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/flipper_imageView3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/apply_admin_rightop" />
+                android:layout_height="match_parent"/>
         </ViewFlipper>
 
 

@@ -2,7 +2,6 @@ package cn.wxl475.meowchat_android;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -15,8 +14,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private SharedPreferences.Editor editor;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,21 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         // 获取页面上的底部导航栏控件
         BottomNavigationView navView = findViewById(R.id.nav_view);
-
-        // 配置navigation与底部菜单之间的联系
-        // 底部菜单的样式里面的item里面的ID与navigation布局里面指定的ID必须相同，否则会出现绑定失败的情况
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_community, R.id.navigation_collection, R.id.navigation_world, R.id.navigation_user)
-//                .build();//因为取消了app上方的标题栏，所以弃用此行代码，否则无法进入app
-        // 建立fragment容器的控制器，这个容器就是页面的上的fragment容器
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-        // 启动
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);//因为取消了app上方的标题栏，所以弃用此行代码，否则无法进入app
         NavigationUI.setupWithNavController(navView, navController);
-
-        editor =getBaseContext().getSharedPreferences("public",MODE_PRIVATE).edit();
-        editor.putString("获取轮播图", "https://meowchat.xhpolaris.com/notice/get_news");
     }
 
     public void releaseOnClick() {
