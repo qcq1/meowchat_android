@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Meowchat_android">
         <activity
+            android:name=".MomentDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".WebActivity"
             android:exported="false" />
         <activity

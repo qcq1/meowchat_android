@@ -47,12 +47,12 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="90" >
+            android:layout_weight="90"
+            tools:ignore="SpeakableTextPresentCheck">
 
             <LinearLayout
-                android:id="@+id/waterfall"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <ViewFlipper
@@ -63,6 +63,11 @@
                     android:outAnimation="@anim/left_out">
 
                 </ViewFlipper>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/waterfall"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
