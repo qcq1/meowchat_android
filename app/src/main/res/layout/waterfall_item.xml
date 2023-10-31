@@ -74,13 +74,14 @@
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:paddingBottom="10dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:weightSum="100">
 
         <TextView
             android:id="@+id/textView_moment_likenum"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="60"
             android:gravity="start|center_vertical"
             android:singleLine="true"
             android:textSize="9sp"
@@ -88,9 +89,9 @@
 
         <TextView
             android:id="@+id/textView_moment_commentnum"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="40"
             android:gravity="end|center_vertical"
             android:singleLine="true"
             android:textSize="9sp"
