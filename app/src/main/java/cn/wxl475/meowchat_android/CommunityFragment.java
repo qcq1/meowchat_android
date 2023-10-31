@@ -192,8 +192,8 @@ public class CommunityFragment extends Fragment{
                     List<like_get_count_result> likeGetCountResults = new ArrayList<>();
                     ArrayList<get_comments_result> getCommentsResults = new ArrayList<>();
                     for(Moment moment : moments){
-                        likeGetCountResults.add(okhttp_get_moment_like_num(moment, "1"));
-                        getCommentsResults.add(okhttp_get_comments(moment,"moment","0"));
+                        likeGetCountResults.add(okhttp_get_moment_like_num(moment, "4"));
+                        getCommentsResults.add(okhttp_get_comments(moment,"3","0"));
                     }
                     MomentAllDetail momentAllDetail = new MomentAllDetail(momentResult,likeGetCountResults,getCommentsResults);
                     Message msg = new Message();
@@ -231,7 +231,7 @@ public class CommunityFragment extends Fragment{
         return null;
     }
 
-    private get_comments_result okhttp_get_comments(Moment moment,String scope,String page) throws IOException {
+    private get_comments_result okhttp_get_comments(Moment moment,String type,String page) throws IOException {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
                 .connectTimeout(8000, TimeUnit.SECONDS)
@@ -240,10 +240,10 @@ public class CommunityFragment extends Fragment{
                 .build();
         LinkedHashMap<String, String> params = new LinkedHashMap<>();
         params.put("id",moment.getId());
-        params.put("scope",scope);
+        params.put("type",type);
         params.put("page",page);
 
-        String url = my_utils.concat_url_params(getter_CommunityFragment.getString("获取点赞数量", ""), params);
+        String url = my_utils.concat_url_params(getter_CommunityFragment.getString("获取评论", ""), params);
         Request request = new Request.Builder()
                 .url(url)
                 .addHeader("Authorization", getter_CommunityFragment.getString("token", ""))
