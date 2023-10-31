@@ -68,11 +68,13 @@ public class my_moment_RecyclerViewAdapter extends RecyclerView.Adapter<my_momen
         holder.moment_avatar.setImageURL(user.getAvatarUrl());
         holder.moment_nickname.setText(user.getNickname());
         Date date = Date.from(Instant.ofEpochSecond(moment.getCreateAt()));
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(date);
         StringBuilder stringBuilder = new StringBuilder();
-        if(date.getYear()+1900!= Year.now().getValue()){
-            stringBuilder.append(date.getYear()).append("-");
+        if(calendar.get(Calendar.YEAR)!= Year.now().getValue()){
+            stringBuilder.append(calendar.get(Calendar.YEAR)).append("-");
         }
-        stringBuilder.append(date.getMonth()).append("-").append(date.getDate());
+        stringBuilder.append(calendar.get(Calendar.MONTH)+1).append("-").append(calendar.get(Calendar.DAY_OF_MONTH));
         holder.moment_date.setText(stringBuilder.toString());
 
         int comment_count=0,like_count=likeGetCountResult.getCount();
