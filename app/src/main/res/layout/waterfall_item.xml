@@ -14,42 +14,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:paddingBottom="10dp"
         android:scaleType="centerCrop" />
-
-    <TextView
-        android:id="@+id/textView_moment_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="start|center_vertical"
-        android:textStyle="bold"
-        android:singleLine="true"
-        android:textSize="16sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <cn.wxl475.meowchat_android.myClass.my_imageView
-            android:id="@+id/imageView_avatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="13dp"
+        android:paddingEnd="13dp">
 
         <TextView
-            android:id="@+id/textView_nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="start|center_vertical"
-            android:singleLine="true"
-            android:textSize="12sp"/>
-
-        <TextView
-            android:id="@+id/textView_moment_date"
+            android:id="@+id/textView_moment_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="end|center_vertical"
+            android:gravity="start|center_vertical"
+            android:paddingBottom="10dp"
             android:singleLine="true"
-            android:textSize="12sp"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:weightSum="100">
+
+            <cn.wxl475.meowchat_android.myClass.my_imageView
+                android:id="@+id/imageView_avatar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10" />
+
+            <TextView
+                android:id="@+id/textView_nickname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="45"
+                android:gravity="start|center_vertical"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:singleLine="true"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textView_moment_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="45"
+                android:gravity="end|center_vertical"
+                android:singleLine="true"
+                android:textSize="12sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -57,6 +75,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingStart="13dp"
+        android:paddingEnd="13dp"
+        android:paddingBottom="10dp"
         android:visibility="gone">
 
         <TextView
