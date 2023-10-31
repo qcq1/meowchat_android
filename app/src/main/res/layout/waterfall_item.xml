@@ -21,8 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingStart="13dp"
-        android:paddingEnd="13dp">
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
 
         <TextView
             android:id="@+id/textView_moment_title"
@@ -71,8 +71,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingStart="13dp"
-        android:paddingEnd="13dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:paddingBottom="10dp"
         android:visibility="gone">
 
