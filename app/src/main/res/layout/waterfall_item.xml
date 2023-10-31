@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:padding="5dp">
     <!--android:adjustViewBounds="true":设置View控件的宽高比等于图片的宽高比（图片不失真）对图片进行等比例放缩。
         android:scaleType="centerCrop"：设置控件的中心与图片的中心一致，对图片进行等比例放缩，直到填充满view控件。
@@ -38,34 +39,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp"
-            android:weightSum="80">
+            android:paddingBottom="10dp">
 
             <cn.wxl475.meowchat_android.myClass.my_imageView
                 android:id="@+id/imageView_avatar"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="12" />
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
 
             <TextView
                 android:id="@+id/textView_nickname"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="34"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="start|center_vertical"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:singleLine="true"
-                android:textSize="8sp" />
+                android:textSize="9sp" />
 
             <TextView
                 android:id="@+id/textView_moment_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="34"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="end|center_vertical"
                 android:singleLine="true"
-                android:textSize="8sp" />
+                android:textSize="9sp" />
         </LinearLayout>
 
     </LinearLayout>
