@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
     android:padding="5dp">
     <!--android:adjustViewBounds="true":设置View控件的宽高比等于图片的宽高比（图片不失真）对图片进行等比例放缩。
         android:scaleType="centerCrop"：设置控件的中心与图片的中心一致，对图片进行等比例放缩，直到填充满view控件。
