@@ -28,9 +28,9 @@ jobs:
       run: ./gradlew build
 
     - name: Build APK
-      run: ./gradlew :app:assembleDebug
+      run: ./gradlew :app:assembleRelease
 
     - uses: actions/upload-artifact@v2
       with:
         name: Package
-        path: app/build/outputs/apk/debug/
+        path: app/build/outputs/apk/release/
