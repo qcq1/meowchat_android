@@ -39,19 +39,19 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingBottom="10dp"
-            android:weightSum="100">
+            android:weightSum="80">
 
             <cn.wxl475.meowchat_android.myClass.my_imageView
                 android:id="@+id/imageView_avatar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10" />
+                android:layout_weight="12" />
 
             <TextView
                 android:id="@+id/textView_nickname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="45"
+                android:layout_weight="34"
                 android:gravity="start|center_vertical"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
@@ -62,7 +62,7 @@
                 android:id="@+id/textView_moment_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="45"
+                android:layout_weight="34"
                 android:gravity="end|center_vertical"
                 android:singleLine="true"
                 android:textSize="8sp" />
