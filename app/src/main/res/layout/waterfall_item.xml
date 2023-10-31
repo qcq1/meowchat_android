@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:paddingBottom="10dp"
+        android:paddingBottom="8dp"
         android:scaleType="centerCrop" />
 
     <LinearLayout
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="start|center_vertical"
-            android:paddingBottom="10dp"
+            android:paddingBottom="8dp"
             android:singleLine="true"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="10dp">
+            android:paddingBottom="8dp">
 
             <cn.wxl475.meowchat_android.myClass.my_imageView
                 android:id="@+id/imageView_avatar"
@@ -73,15 +73,13 @@
         android:orientation="horizontal"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
-        android:paddingBottom="10dp"
-        android:visibility="gone"
-        android:weightSum="100">
+        android:paddingBottom="8dp"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/textView_moment_likenum"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="60"
             android:gravity="start|center_vertical"
             android:singleLine="true"
             android:textSize="9sp"
@@ -89,9 +87,8 @@
 
         <TextView
             android:id="@+id/textView_moment_commentnum"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="40"
             android:gravity="end|center_vertical"
             android:singleLine="true"
             android:textSize="9sp"
