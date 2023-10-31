@@ -32,4 +32,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: Package
-        path: archive/refs/tags/
+        path: app/build/outputs/apk/release/
