@@ -83,7 +83,7 @@ public class my_moment_RecyclerViewAdapter extends RecyclerView.Adapter<my_momen
                 holder.moment_commentnum.setVisibility(View.VISIBLE);
                 holder.moment_commentnum.setText(Integer.toString(comment_count)+"条回复");
             }
-            else {
+            if(like_count>0) {
                 holder.moment_likenum.setVisibility(View.VISIBLE);
                 holder.moment_likenum.setText(Integer.toString(like_count)+"位喵友觉得很赞");
             }
