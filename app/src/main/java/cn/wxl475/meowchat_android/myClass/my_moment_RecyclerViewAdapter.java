@@ -77,8 +77,9 @@ public class my_moment_RecyclerViewAdapter extends RecyclerView.Adapter<my_momen
         stringBuilder.append(calendar.get(Calendar.MONTH)+1).append("-").append(calendar.get(Calendar.DAY_OF_MONTH));
         holder.moment_date.setText(stringBuilder.toString());
 
-        int comment_count=0,like_count=likeGetCountResult.getCount();
+        int comment_count=0,like_count=0;
         if(getCommentsResult.getComments()!=null)comment_count=getCommentsResult.getComments().size();
+        if(likeGetCountResult.getCount()!=null)like_count=likeGetCountResult.getCount();
         if(comment_count>0 || like_count>0){
             holder.like_and_comment.setVisibility(View.VISIBLE);
             if(comment_count>0){
