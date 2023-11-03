@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -74,12 +73,6 @@ public class my_imageView extends androidx.appcompat.widget.AppCompatImageView {
                         InputStream inputStream = connection.getInputStream();
                         //使用工厂把网络的输入流生产Bitmap
                         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                        //图片压缩
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, baos);
-                        byte[] bytes = baos.toByteArray();
-                        bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-
                         //利用Message把图片发给Handler
                         Message msg = Message.obtain();
                         msg.obj = bitmap;
@@ -97,25 +90,5 @@ public class my_imageView extends androidx.appcompat.widget.AppCompatImageView {
                 }
             }
         }.start();
-    }
-    /*
-     * 计算采样率
-     */
-    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            final int halfHeight = height / 2;
-            final int halfWidth = width / 2;
-            while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth) {
-                inSampleSize *= 2;
-            }
-        }
-
-        return inSampleSize;
     }
 }
