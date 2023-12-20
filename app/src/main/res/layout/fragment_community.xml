@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/homepage_community"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -44,7 +45,8 @@
 
         </LinearLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <cn.wxl475.meowchat_android.myClass.communityNestedScrollView
+            android:id="@+id/community_NestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="90"
@@ -72,7 +74,7 @@
                     android:paddingBottom="50dp" />
 
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+        </cn.wxl475.meowchat_android.myClass.communityNestedScrollView>
 
 
     </LinearLayout>

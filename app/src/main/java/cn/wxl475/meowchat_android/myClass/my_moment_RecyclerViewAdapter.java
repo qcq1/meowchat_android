@@ -27,8 +27,8 @@ import cn.wxl475.meowchat_android.pojo.like_get_count_result;
 //让我们的适配器继承自RecyclerView.Adapter<>，并指定泛型为我们适配器的类名.ViewHolder，
 // ViewHolder继承自RecyclerView.ViewHolder，并实现每个继承要实现的方法
 public class my_moment_RecyclerViewAdapter extends RecyclerView.Adapter<my_moment_RecyclerViewAdapter.ViewHolder> implements View.OnClickListener {
-    private Context context;
-    private MomentAllDetail momentAllDetail;
+    private final Context context;
+    private final MomentAllDetail momentAllDetail;
     //声明一个这个接口的变量
     private onRecyclerViewItemClickListener mOnRecyclerViewItemClickListener = null;
 
@@ -42,6 +42,7 @@ public class my_moment_RecyclerViewAdapter extends RecyclerView.Adapter<my_momen
     //然后返回一个ViewHolder对象
     @Override
     public my_moment_RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        System.out.println("create");
         //创建一个view对象（通过布局填充器将布局文件转化为view对象）
         View view = View.inflate(context, R.layout.waterfall_item, null);
         //初始化一个ViewHolder对象，传入view对象
@@ -56,7 +57,7 @@ public class my_moment_RecyclerViewAdapter extends RecyclerView.Adapter<my_momen
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(my_moment_RecyclerViewAdapter.ViewHolder holder, int position) {
-
+        System.out.println("bind");
         get_comments_result getCommentsResult = momentAllDetail.getGetCommentsResults().get(position);
         like_get_count_result likeGetCountResult = momentAllDetail.getLikeGetCountResults().get(position);
         List<Moment> moments = momentAllDetail.getGetMomentPreviewsResult().getMoments();
@@ -94,6 +95,17 @@ public class my_moment_RecyclerViewAdapter extends RecyclerView.Adapter<my_momen
         //给每个itemview添加一个Tag,传递数据
         holder.itemView.setTag(moments.get(position));
 
+    }
+
+    //提供给外部调用的方法 刷新数据
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateData(MomentAllDetail momentAllDetail1){
+        //再此处理获得的数据
+        momentAllDetail.getGetMomentPreviewsResult().getMoments().addAll(momentAllDetail1.getGetMomentPreviewsResult().getMoments());
+        momentAllDetail.getGetCommentsResults().addAll(momentAllDetail1.getGetCommentsResults());
+        momentAllDetail.getLikeGetCountResults().addAll(momentAllDetail1.getLikeGetCountResults());
+        //最后记得刷新item
+        notifyDataSetChanged();
     }
 
     //获取item的条目总数

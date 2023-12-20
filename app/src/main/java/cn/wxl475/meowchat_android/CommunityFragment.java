@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -29,6 +32,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import cn.wxl475.meowchat_android.myClass.EndlessRecyclerOnScrollListener;
+import cn.wxl475.meowchat_android.myClass.communityNestedScrollView;
 import cn.wxl475.meowchat_android.myClass.my_imageView;
 import cn.wxl475.meowchat_android.myClass.my_moment_RecyclerViewAdapter;
 import cn.wxl475.meowchat_android.pojo.Moment;
@@ -49,13 +54,16 @@ public class CommunityFragment extends Fragment {
     private View root;
     private ViewFlipper flipper;
     private RecyclerView waterfall;
+    private LinearLayout flipper_and_waterfall_linearlayout;
+    private communityNestedScrollView communityNestedScrollView;
     private Integer page;
     private my_moment_RecyclerViewAdapter myMomentRecyclerViewAdapter;
     private SharedPreferences.Editor editor_CommunityFragment;
     private SharedPreferences getter_CommunityFragment;
     protected WeakReference<View> mRootView;
     @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler() {
+    private Handler handler = new Handler(Looper.getMainLooper()) {
+        private Boolean isLoading =false;
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
@@ -88,6 +96,19 @@ public class CommunityFragment extends Fragment {
                 StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
                 //将布局管理器设置给recyclerveiw控件
                 waterfall.setLayoutManager(staggeredGridLayoutManager);
+                waterfall.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
+                    @Override
+                    public void onLoadMore() {
+                        if(!isLoading) {
+                            okHttp_get_moment();
+                            isLoading =true;
+                        }
+                    }
+                });
+            }else if(msg.what==3){
+                MomentAllDetail momentAllDetail = (MomentAllDetail) msg.obj;
+                myMomentRecyclerViewAdapter.updateData(momentAllDetail);
+                isLoading =false;
             }
         }
 
@@ -114,6 +135,23 @@ public class CommunityFragment extends Fragment {
             //初始化内容
             flipper = root.findViewById(R.id.flipper);
             waterfall = root.findViewById(R.id.waterfall);
+            //保证waterfall高度动态设定为flipper_and_waterfall_linearlayout的高度。
+            flipper_and_waterfall_linearlayout=root.findViewById(R.id.homepage_community);
+            communityNestedScrollView=root.findViewById(R.id.community_NestedScrollView);
+            flipper_and_waterfall_linearlayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    communityNestedScrollView.setHeaderHeight(flipper.getMeasuredHeight());
+                    int measuredHeight = flipper_and_waterfall_linearlayout.getMeasuredHeight();
+                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) waterfall.getLayoutParams();
+                    layoutParams.height=measuredHeight;
+                    waterfall.setLayoutParams(layoutParams);
+                    if(measuredHeight!=0){
+                        flipper_and_waterfall_linearlayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                }
+            });
+
             page = 0;
 
             getter_CommunityFragment = requireContext().getSharedPreferences("CommunityFragment", MODE_PRIVATE);
@@ -139,7 +177,7 @@ public class CommunityFragment extends Fragment {
             //初始化界面的请求
             try {
                 okHttp_init_news();
-                okHttp_init_moment();
+                okHttp_get_moment();
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
@@ -154,7 +192,7 @@ public class CommunityFragment extends Fragment {
         return root;
     }
 
-    private void okHttp_init_moment() {
+    private void okHttp_get_moment() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
                 .connectTimeout(8000, TimeUnit.SECONDS)
@@ -199,9 +237,14 @@ public class CommunityFragment extends Fragment {
                     }
                     MomentAllDetail momentAllDetail = new MomentAllDetail(momentResult, likeGetCountResults, getCommentsResults);
                     Message msg = new Message();
-                    msg.what = 2;
+                    if(page==0){
+                        msg.what = 2;
+                    }else {
+                        msg.what = 3;
+                    }
                     msg.obj = momentAllDetail;
                     handler.sendMessage(msg);
+                    page+=1;
                 }
             }
         });
